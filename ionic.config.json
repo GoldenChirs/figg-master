@@ -1,0 +1,8 @@
+{
+  "name": "FIGGMaster",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular",
+  "id": "779fcf52"
+}
