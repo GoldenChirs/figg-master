@@ -3,95 +3,63 @@ import { Component } from '@angular/core';
 import Phaser from 'phaser';
 
 class GameScene extends Phaser.Scene {
-  constructor (config)
-  {
-      super(config);
+  constructor(config) {
+    super(config);
   }
 
-  preload ()
-  {
-      this.load.spritesheet('brawler', 'assets/animations/brawler48x48.png', { frameWidth: 48, frameHeight: 48 });
+  preload() {
+    //this.load.spritesheet('brawler', 'assets/animations/brawler48x48.png', { frameWidth: 48, frameHeight: 48 });
+    this.load.path = 'assets/animations/';
+    this.load.image('happy1', 'happy-1.png');
+    this.load.image('happy2', 'happy-2.png');
+    this.load.image('sad1', 'sad-1.png');
+    this.load.image('sad2', 'sad-2.png');
   }
 
-  create ()
-  {
-     
-      const current = this.add.text(48, 460, 'Playing: walk', { color: '#00ff00' });
+  create() {
 
-      // Animation set
-      this.anims.create({
-          key: 'walk',
-          frames: this.anims.generateFrameNumbers('brawler', { frames: [ 0, 1, 2, 3 ] }),
-          frameRate: 8,
-          repeat: -1
-      });
+    //const current = this.add.text(48, 460, 'Playing: walk', { color: '#00ff00' });
 
-      this.anims.create({
-          key: 'idle',
-          frames: this.anims.generateFrameNumbers('brawler', { frames: [ 5, 6, 7, 8 ] }),
-          frameRate: 8,
-          repeat: -1
-      });
+    // Animation set
 
-      this.anims.create({
-          key: 'kick',
-          frames: this.anims.generateFrameNumbers('brawler', { frames: [ 10, 11, 12, 13, 10 ] }),
-          frameRate: 8,
-          repeat: -1,
-          repeatDelay: 2000
-      });
+    this.anims.create({
+      key: 'smile',
+      frames: [
+        { key: 'happy1' },
+        { key: 'happy2' },
+        { key: 'happy1' },
+        { key: 'happy2', duration: 50 }
+      ],
+      frameRate: 8,
+      repeat: -1
+    });
 
-      this.anims.create({
-          key: 'punch',
-          frames: this.anims.generateFrameNumbers('brawler', { frames: [ 15, 16, 17, 18, 17, 15 ] }),
-          frameRate: 8,
-          repeat: -1,
-          repeatDelay: 2000
-      });
+    this.anims.create({
+      key: 'cry',
+      frames: [
+        { key: 'sad1' },
+        { key: 'sad2' },
+        { key: 'sad1' },
+        { key: 'sad2', duration: 50 }
+      ],
+      frameRate: 8,
+      repeat: -1
+    });
 
-      this.anims.create({
-          key: 'jump',
-          frames: this.anims.generateFrameNumbers('brawler', { frames: [ 20, 21, 22, 23 ] }),
-          frameRate: 8,
-          repeat: -1
-      });
+    const keys = ['smile', 'cry'];
 
-      this.anims.create({
-          key: 'jumpkick',
-          frames: this.anims.generateFrameNumbers('brawler', { frames: [ 20, 21, 22, 23, 25, 23, 22, 21 ] }),
-          frameRate: 8,
-          repeat: -1
-      });
+    const cody = this.add.sprite(window.innerWidth / 2, window.innerHeight / 2, 'smile');
+    cody.setScale(1);
+    cody.play('smile');
 
-      this.anims.create({
-          key: 'win',
-          frames: this.anims.generateFrameNumbers('brawler', { frames: [ 30, 31 ] }),
-          frameRate: 8,
-          repeat: -1,
-          repeatDelay: 2000
-      });
-
-      this.anims.create({
-          key: 'die',
-          frames: this.anims.generateFrameNumbers('brawler', { frames: [ 35, 36, 37 ] }),
-          frameRate: 8,
-      });
-
-      const keys = [ 'walk', 'idle', 'kick', 'punch', 'jump', 'jumpkick', 'win', 'die' ];
-
-      const cody = this.add.sprite(window.innerWidth / 2, window.innerHeight / 2, 'walk');
-      cody.setScale(8);
-      cody.play('walk');
-
-      let c = 0;
-      this.input.on('pointerdown', function () {
-          c++;
-          if (c === keys.length)
-          {
-              c = 0;
-          }
-          cody.play(keys[c]);
-      });
+    let c = 0;
+    this.input.on('pointerdown', function () {
+      c++;
+      if (c === keys.length) {
+        c = 0;
+      }
+      cody.play(keys[c]);
+    });
   }
 }
 
@@ -106,19 +74,19 @@ export class Tab3Page {
   config: Phaser.Types.Core.GameConfig;
 
   constructor() {
-      this.config = {
-          type: Phaser.AUTO,
-          width: window.innerWidth,
-          height: window.innerHeight,
-          physics: {
-              default: 'arcade'
-          },
-          parent: 'game',
-          scene: GameScene
-      };
+    this.config = {
+      type: Phaser.AUTO,
+      width: window.innerWidth,
+      height: window.innerHeight,
+      physics: {
+        default: 'arcade'
+      },
+      parent: 'game',
+      scene: GameScene
+    };
   }
 
   ngOnInit(): void {
-      this.phaserGame = new Phaser.Game(this.config);
+    this.phaserGame = new Phaser.Game(this.config);
   }
 }
