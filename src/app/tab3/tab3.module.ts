@@ -19,6 +19,7 @@ import { PointsComponent } from '../points/points.component';
     FontAwesomeModule,
     RouterModule.forChild([{ path: '', component: Tab3Page }]),
     Tab3PageRoutingModule,
+    FontAwesomeModule
   ],
   declarations: [Tab3Page, PointsComponent]
 })

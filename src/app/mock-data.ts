@@ -38,10 +38,17 @@ export const BUDGET: Budget = {
 }
 
 export const CHALLENGES: Challenge[] = [
-    {id: 0, category: "Food", amount: 50, description: "Spend $50 on Food and Dining this month", duration: 30},
-    {id: 1, category: "Food", frequency: 2, description: "Spend 2 times only on Restaurant this month", duration: 30},
+    { id: 0, category: "Food", amount: 200, description: "Spend $200 on Food and Dining this month", duration: 30 },
+    { id: 1, category: "Food", frequency: 2, description: "Spend 2 times only on Restaurant this month", duration: 30 },
 ];
 
 export const GOALS: Goal[] = [
-    {id: 0, description: "Save $2000 for travel", amount: 2000},
+    { id: 0, description: "Save $2000 for travel", amount: 2000 },
+];
+
+export const GROUP_TO_CATEGORY_MAP = [
+    { group: "Auto & Transportation", categories: ["Gas", "Parking"] },
+    { group: "Food & Dinings", categories: ["Food", "Grocery"] },
+    { group: "Living & Utilities", categories: ["Utility", "Rent"] },
+    { group: "Others", categories: ["Makeup", "Pet"] },
 ];
