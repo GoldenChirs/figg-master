@@ -1,0 +1,39 @@
+<div class="page-wrap">
+  <div class="float-right"><span class="badge rounded-pill bg-secondary"><fa-icon [icon]="faCoins"></fa-icon> {{points}}</span></div>
+  <h2>Challenges</h2>
+  <div>
+    <div class="list-title">My Goals <button type="button" class="btn btn-outline-primary btn-sm add-button" (click)="addGoal()">Add</button></div>
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let goal of goals">
+        <div class="row">
+          <div class="col-2"><i class="fa fa-utensils"></i></div>
+          <div class="col-7">
+            {{goal.description}}
+            <div class="subdescription">${{budgetHelper.actualSavingSum}} of ${{goal.amount}} saved</div>
+          </div>
+          <div class="col-3 track-amount">
+            <span><b>${{goal.amount - budgetHelper.actualSavingSum}} more</b></span>
+          </div>
+        </div>
+
+      </li>
+    </ul>
+
+    <div class="list-title">My Challenges <button type="button" class="btn btn-outline-primary btn-sm add-button" (click)="addChallenge()">Add</button></div>
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let challenge of challenges">
+        <div class="row">
+          <div class="col-2"><i class="fa fa-utensils"></i></div>
+          <div class="col-7">{{challenge.description}}</div>
+          <div class="col-3 track-amount">
+            <div *ngIf="challenge.amount !== null && challenge.amount !== undefined">
+              <span><b>${{actualAmount(challenge.category)}}/${{challenge.amount}}</b></span></div>
+            <div *ngIf="challenge.frequency !== null && challenge.frequency !== undefined">
+              <span><b>{{actualFrequency(challenge.category)}}/{{challenge.frequency}}</b></span></div>
+          </div>
+        </div>
+
+      </li>
+    </ul>
+  </div>
+</div>

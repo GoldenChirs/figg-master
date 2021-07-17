@@ -1,0 +1,44 @@
+.page-wrap {
+    margin: 5px;
+}
+
+.list-title {
+    margin-bottom: 5px;
+}
+
+.add-button {
+    float: right;
+    margin-right: 10px;
+    font-size: x-small;
+}
+
+.float-right {
+    float: right;
+}
+
+.track-amount {
+    text-align: right;
+    line-height: 0.8;
+    float: right;
+    font-size: smaller;
+ }
+
+ .challenge-description {
+    word-wrap: break-word;
+ }
+
+ i.fa {
+    display: inline-block;
+    border-radius: 60px;
+    box-shadow: 0px 0px 2px #888;
+    padding: 0.5em 0.6em;
+}
+
+.list-group li{
+    border: none;
+}
+
+.subdescription {
+    font-size: 10px;
+    color: grey;
+}
