@@ -8,6 +8,7 @@ class GameScene extends Phaser.Scene {
   }
 
   preload() {
+    this.load.image('bg', 'assets/img/monie_bg.png');
     //this.load.spritesheet('brawler', 'assets/animations/brawler48x48.png', { frameWidth: 48, frameHeight: 48 });
     this.load.path = 'assets/animations/';
     this.load.image('happy1', 'happy-1.png');
@@ -17,7 +18,7 @@ class GameScene extends Phaser.Scene {
   }
 
   create() {
-
+    this.add.image(0, 0, 'bg');
     //const current = this.add.text(48, 460, 'Playing: walk', { color: '#00ff00' });
 
     // Animation set
