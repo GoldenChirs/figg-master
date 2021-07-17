@@ -1,0 +1,7 @@
+<div>
+<ul class="list-group">
+  <li class="list-group-item" *ngFor="let expense of expenses">
+    {{expense.description}} <span class="expense-spending">${{expense.amount}}</span>
+  </li>
+</ul>
+</div>
