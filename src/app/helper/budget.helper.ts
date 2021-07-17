@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { BUDGET } from "../mock-data";
+import { BUDGET, EXPENSES, PLANNED_EXPENSES } from "../mock-data";
 
 @Injectable({
     providedIn: 'root',
@@ -12,11 +12,13 @@ export class BudgetHelper {
     public actualSavingSum = 0;
     public expensesPercentage: number;
     public savingsPercentage: number;
+    public categorySummary = [];
 
     private PERCENTAGE_CONST = 100;
 
     constructor() {
         this.calculateSums();
+        this.summarizeCategories();
         this.expensesPercentage = Math.round(this.actualExpenseSum / this.plannedExpenseSum * this.PERCENTAGE_CONST);
         this.savingsPercentage = Math.round(this.actualSavingSum / this.plannedSavingSum * this.PERCENTAGE_CONST);
     }
@@ -35,6 +37,26 @@ export class BudgetHelper {
         });
 
         this.plannedSavingSum = this.budget.planned_saving.amount;
+    }
+
+    private summarizeCategories() {
+        PLANNED_EXPENSES.forEach((expense) => {
+            this.categorySummary.push({
+                name: expense.category,
+                planned_amount: expense.amount,
+            });
+        });
+
+        for (let i = 0; i < this.categorySummary.length; i++) {
+            let categoryName = this.categorySummary[i].name;
+            let expenseSum = 0;
+            EXPENSES.forEach((expense) => {
+                if (expense.category === categoryName) {
+                    expenseSum += expense.amount;
+                }
+            });
+            this.categorySummary[i].actual_amount = expenseSum;
+        }
     }
 
 }

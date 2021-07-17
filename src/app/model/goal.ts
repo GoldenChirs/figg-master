@@ -1,6 +1,6 @@
 
 export interface Goal {
-    id: string,
+    id: number,
     amount: number,
     description: string,
 }

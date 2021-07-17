@@ -1,5 +1,7 @@
 import { Budget } from "./model/budget";
+import { Challenge } from "./model/challenge";
 import { Expense } from "./model/expense";
+import { Goal } from "./model/goal";
 import { Saving } from "./model/saving";
 
 
@@ -34,3 +36,12 @@ export const BUDGET: Budget = {
     actual_saving: ACTUAL_SAVINGS,
     planned_saving: { id: 31, amount: 100 },
 }
+
+export const CHALLENGES: Challenge[] = [
+    {id: 0, category: "Food", amount: 50, description: "Spend $50 on Food and Dining this month", duration: 30},
+    {id: 1, category: "Food", frequency: 2, description: "Spend 2 times only on Restaurant this month", duration: 30},
+];
+
+export const GOALS: Goal[] = [
+    {id: 0, description: "Save $2000 for travel", amount: 2000},
+];

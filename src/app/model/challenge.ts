@@ -1,8 +1,9 @@
 
 export interface Challenge {
-    id: string,
+    id: number,
     category: string,
-    amount: number,
-    frequency: number,
+    description: string,
+    amount?: number,
+    frequency?: number,
     duration: number,
 }
