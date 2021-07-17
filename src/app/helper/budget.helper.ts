@@ -5,6 +5,7 @@ import { BUDGET, EXPENSES, PLANNED_EXPENSES } from "../mock-data";
     providedIn: 'root',
 })
 export class BudgetHelper {
+    public points = 100;
     public budget = BUDGET;
     public plannedExpenseSum = 0;
     public actualExpenseSum = 0;
@@ -13,6 +14,7 @@ export class BudgetHelper {
     public expensesPercentage: number;
     public savingsPercentage: number;
     public categorySummary = [];
+    public isChallengeComplete = false;
 
     private PERCENTAGE_CONST = 100;
 
@@ -21,6 +23,14 @@ export class BudgetHelper {
         this.summarizeCategories();
         this.expensesPercentage = Math.round(this.actualExpenseSum / this.plannedExpenseSum * this.PERCENTAGE_CONST);
         this.savingsPercentage = Math.round(this.actualSavingSum / this.plannedSavingSum * this.PERCENTAGE_CONST);
+    }
+
+    public updateChallengesStatus() {
+        this.isChallengeComplete = true;
+    }
+
+    public updatePoints() {
+        this.points += 20;
     }
 
     private calculateSums() {
