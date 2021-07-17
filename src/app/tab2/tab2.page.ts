@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { ToastController } from '@ionic/angular';
+import { BudgetHelper } from '../helper/budget.helper';
 
 @Component({
   selector: 'app-tab2',
@@ -7,6 +9,13 @@ import { Component } from '@angular/core';
 })
 export class Tab2Page {
 
-  constructor() {}
+  constructor(public toastCtrl: ToastController, private budgetHelper: BudgetHelper) { }
+  async openToast() {
+    const toast = await this.toastCtrl.create({
+      message: 'Challenges Completed! You got 20 Points!',
+      duration: 2000
+    });
+    toast.present();
+  }
 
 }

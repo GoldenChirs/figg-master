@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { BudgetHelper } from '../helper/budget.helper';
 import { CHALLENGES, EXPENSES, GOALS } from '../mock-data';
-import { faCoins } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-challenges',
@@ -9,21 +8,28 @@ import { faCoins } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./challenges.component.scss'],
 })
 export class ChallengesComponent implements OnInit {
+  
   public challenges = CHALLENGES;
   public goals = GOALS;
-  public points = 100;
-  public faCoins = faCoins;
 
+  @Output() challengeCompleted: EventEmitter<boolean> = new EventEmitter();
   constructor(private budgetHelper: BudgetHelper) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    // mockup a challenge complete event
+    setTimeout(() => {
+      this.challengeCompleted.emit(true);
+      this.budgetHelper.updateChallengesStatus();
+      this.budgetHelper.updatePoints();
+    },2000);
+  }
 
   public addGoal() {
 
   }
 
   public addChallenge() {
-    
+
   }
 
   public actualAmount(categoryName: string) {
