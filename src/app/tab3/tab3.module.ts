@@ -16,6 +16,7 @@ import { PointsComponent } from '../points/points.component';
     CommonModule,
     FormsModule,
     ExploreContainerComponentModule,
+    FontAwesomeModule,
     RouterModule.forChild([{ path: '', component: Tab3Page }]),
     Tab3PageRoutingModule,
     FontAwesomeModule
