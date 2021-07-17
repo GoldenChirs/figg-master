@@ -1,17 +1,28 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 1
+      <app-summary-header></app-summary-header>
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+  <div class="navbar-section">
+    <ul class="nav nav-pills nav-fill">
+      <li class="nav-item">
+        <a class="nav-link" aria-current="page" (click)="switchSummaryTab()"
+          [ngClass]="{'active': isActiveTab('summary') }">Summary</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" (click)="switchDetailsTab()" [ngClass]="{'active': isActiveTab('details') }">Expenses</a>
+      </li>
+    </ul>
+  </div>
+  <div class="scrollable-container">
+    <ng-container *ngComponentOutlet="openTab"></ng-container>
+  </div>
+
+
+
 </ion-content>

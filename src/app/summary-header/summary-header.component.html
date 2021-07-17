@@ -1,0 +1,11 @@
+<div class="header">
+  <div class="header-content">
+    <span style="font-size: 30px;">${{budgetHelper.actualExpenseSum}}</span> <span style="font-size: 16px;"> of
+      ${{budgetHelper.plannedExpenseSum}}</span>
+
+    <div class="progress">
+      <div class="progress-bar" role="progressbar" [style.width]="budgetHelper.expensesPercentage + '%'"
+        aria-valuemin="0" aria-valuemax="100"></div>
+    </div>
+  </div>
+</div>
