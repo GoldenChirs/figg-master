@@ -4,35 +4,95 @@ import Phaser from 'phaser';
 
 class GameScene extends Phaser.Scene {
   constructor (config)
-    {
-        super(config);
-    }
+  {
+      super(config);
+  }
 
-    preload ()
-    {
-        this.load.path = 'assets/animations/';
+  preload ()
+  {
+      this.load.spritesheet('brawler', 'assets/animations/brawler48x48.png', { frameWidth: 48, frameHeight: 48 });
+  }
 
-        this.load.image('happy1', 'happy-1.png');
-        this.load.image('happy2', 'happy-2.png');
-    }
+  create ()
+  {
+     
+      const current = this.add.text(48, 460, 'Playing: walk', { color: '#00ff00' });
 
-    create ()
-    {
-        this.anims.create({
-            key: 'smile',
-            frames: [
-                { key: 'happy1' },
-                { key: 'happy2' },
-                { key: 'happy1' },
-                { key: 'happy2', duration: 50 }
-            ],
-            frameRate: 8,
-            repeat: -1
-        });
+      // Animation set
+      this.anims.create({
+          key: 'walk',
+          frames: this.anims.generateFrameNumbers('brawler', { frames: [ 0, 1, 2, 3 ] }),
+          frameRate: 8,
+          repeat: -1
+      });
 
-        this.add.sprite(window.innerWidth / 2, window.innerHeight / 2, 'happy1')
-            .play('smile');
-    }
+      this.anims.create({
+          key: 'idle',
+          frames: this.anims.generateFrameNumbers('brawler', { frames: [ 5, 6, 7, 8 ] }),
+          frameRate: 8,
+          repeat: -1
+      });
+
+      this.anims.create({
+          key: 'kick',
+          frames: this.anims.generateFrameNumbers('brawler', { frames: [ 10, 11, 12, 13, 10 ] }),
+          frameRate: 8,
+          repeat: -1,
+          repeatDelay: 2000
+      });
+
+      this.anims.create({
+          key: 'punch',
+          frames: this.anims.generateFrameNumbers('brawler', { frames: [ 15, 16, 17, 18, 17, 15 ] }),
+          frameRate: 8,
+          repeat: -1,
+          repeatDelay: 2000
+      });
+
+      this.anims.create({
+          key: 'jump',
+          frames: this.anims.generateFrameNumbers('brawler', { frames: [ 20, 21, 22, 23 ] }),
+          frameRate: 8,
+          repeat: -1
+      });
+
+      this.anims.create({
+          key: 'jumpkick',
+          frames: this.anims.generateFrameNumbers('brawler', { frames: [ 20, 21, 22, 23, 25, 23, 22, 21 ] }),
+          frameRate: 8,
+          repeat: -1
+      });
+
+      this.anims.create({
+          key: 'win',
+          frames: this.anims.generateFrameNumbers('brawler', { frames: [ 30, 31 ] }),
+          frameRate: 8,
+          repeat: -1,
+          repeatDelay: 2000
+      });
+
+      this.anims.create({
+          key: 'die',
+          frames: this.anims.generateFrameNumbers('brawler', { frames: [ 35, 36, 37 ] }),
+          frameRate: 8,
+      });
+
+      const keys = [ 'walk', 'idle', 'kick', 'punch', 'jump', 'jumpkick', 'win', 'die' ];
+
+      const cody = this.add.sprite(window.innerWidth / 2, window.innerHeight / 2, 'walk');
+      cody.setScale(8);
+      cody.play('walk');
+
+      let c = 0;
+      this.input.on('pointerdown', function () {
+          c++;
+          if (c === keys.length)
+          {
+              c = 0;
+          }
+          cody.play(keys[c]);
+      });
+  }
 }
 
 @Component({
@@ -48,9 +108,8 @@ export class Tab3Page {
   constructor() {
       this.config = {
           type: Phaser.AUTO,
-          backgroundColor: '#fbf0e4',
-          width: 800,
-          height: 600,
+          width: window.innerWidth,
+          height: window.innerHeight,
           physics: {
               default: 'arcade'
           },
