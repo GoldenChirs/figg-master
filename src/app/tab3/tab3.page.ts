@@ -30,7 +30,7 @@ class GameScene extends Phaser.Scene {
             repeat: -1
         });
 
-        this.add.sprite(49, 30, 'happy1')
+        this.add.sprite(window.innerWidth / 2, window.innerHeight / 2, 'happy1')
             .play('smile');
     }
 }
@@ -48,6 +48,7 @@ export class Tab3Page {
   constructor() {
       this.config = {
           type: Phaser.AUTO,
+          backgroundColor: '#fbf0e4',
           width: 800,
           height: 600,
           physics: {
