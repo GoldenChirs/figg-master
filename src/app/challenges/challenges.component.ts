@@ -19,9 +19,7 @@ export class ChallengesComponent implements OnInit {
     // mockup a challenge complete event
     setTimeout(() => {
       this.challengeCompleted.emit(true);
-      this.budgetHelper.updateChallengesStatus();
-      this.budgetHelper.updatePoints();
-    },2000);
+    }, 2000);
   }
 
   public addGoal() {

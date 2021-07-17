@@ -11,6 +11,7 @@ import { ExploreContainerComponentModule } from '../explore-container/explore-co
 import { Tab2PageRoutingModule } from './tab2-routing.module';
 import { ChallengesComponent } from '../challenges/challenges.component';
 import { PointsComponent } from '../points/points.component';
+import { CelebrationComponent } from '../celebration/celebration.component';
 
 @NgModule({
   imports: [
@@ -21,6 +22,6 @@ import { PointsComponent } from '../points/points.component';
     Tab2PageRoutingModule,
     FontAwesomeModule
   ],
-  declarations: [Tab2Page, ChallengesComponent, PointsComponent]
+  declarations: [Tab2Page, ChallengesComponent, PointsComponent, CelebrationComponent]
 })
 export class Tab2PageModule {}

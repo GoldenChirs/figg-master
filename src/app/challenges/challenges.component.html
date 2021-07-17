@@ -1,5 +1,4 @@
 <div class="page-wrap">
-  <app-points></app-points>
   <h1>Challenges</h1>
   <div>
     <div class="list-title">My Goals <button type="button" class="btn btn-outline-primary btn-sm add-button"
@@ -33,8 +32,7 @@
                 [ngClass]="budgetHelper.isChallengeComplete ? 'badge bg-success': ''"><b>${{actualAmount(challenge.category)}}/${{challenge.amount}}</b></span>
             </div>
             <div *ngIf="challenge.frequency !== null && challenge.frequency !== undefined">
-              <span
-                [ngClass]="budgetHelper.isChallengeComplete ? 'badge bg-success': ''"><b>{{actualFrequency(challenge.category)}}/{{challenge.frequency}}</b></span>
+              <span><b>{{actualFrequency(challenge.category)}}/{{challenge.frequency}}</b></span>
             </div>
           </div>
         </div>

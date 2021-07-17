@@ -8,14 +8,29 @@ import { BudgetHelper } from '../helper/budget.helper';
   styleUrls: ['tab2.page.scss']
 })
 export class Tab2Page {
+  public toastOpen = false;
 
   constructor(public toastCtrl: ToastController, private budgetHelper: BudgetHelper) { }
   async openToast() {
     const toast = await this.toastCtrl.create({
-      message: 'Challenges Completed! You got 20 Points!',
-      duration: 2000
+      header: 'Challenge Complete!',
+      message: 'You got 20 Points!',
+      position: 'top',
+      cssClass: 'toast-custom-class',
+      buttons: [
+        {
+          side: 'end',
+          text: 'Got it!',
+          handler: () => {
+            this.budgetHelper.updateChallengesStatus();
+            this.budgetHelper.updatePoints();
+            this.toastOpen = false;
+          }
+        },
+      ]
     });
     toast.present();
+    this.toastOpen = true;
   }
 
 }
