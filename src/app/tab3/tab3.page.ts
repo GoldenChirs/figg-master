@@ -155,7 +155,7 @@ class GameScene extends Phaser.Scene {
           ease: Phaser.Math.Easing.Sine.InOut,
           onUpdate: tweens => {
             const val = tweens.getValue();
-            this.setBarVal('hUnger', val)
+            this.setBarVal('hUnger', Math.floor(val))
           }
         })
         this.hUnger = this.hUnger + 5;
@@ -167,7 +167,7 @@ class GameScene extends Phaser.Scene {
           ease: Phaser.Math.Easing.Sine.InOut,
           onUpdate: tweens => {
             const val = tweens.getValue();
-            this.setBarVal('health', val)
+            this.setBarVal('health', Math.floor(val))
           }
         })
         this.health = this.health + 5;
@@ -180,7 +180,7 @@ class GameScene extends Phaser.Scene {
           ease: Phaser.Math.Easing.Sine.InOut,
           onUpdate: tweens => {
             const val = tweens.getValue();
-            this.setBarVal('mood', val)
+            this.setBarVal('mood', Math.floor(val))
           }
         })
         this.mood = this.mood + 5;
@@ -192,13 +192,13 @@ class GameScene extends Phaser.Scene {
           ease: Phaser.Math.Easing.Sine.InOut,
           onUpdate: tweens => {
             const val = tweens.getValue();
-            this.setBarVal('health', val)
+            this.setBarVal('health', Math.floor(val))
           }
         })
         this.health = this.health + 2;
         break;
       case 'dress':
-        this.add.image(window.innerWidth / 2, window.innerHeight / 2 + 120, 'shirt').setScale(0.9);
+        this.add.image(window.innerWidth / 2, window.innerHeight / 2 + 130, 'shirt').setScale(0.9);
         this.tweens.addCounter({
           from: this.health,
           to: this.health + 5,
@@ -206,7 +206,7 @@ class GameScene extends Phaser.Scene {
           ease: Phaser.Math.Easing.Sine.InOut,
           onUpdate: tweens => {
             const val = tweens.getValue();
-            this.setBarVal('health', val)
+            this.setBarVal('health', Math.floor(val))
           }
         })
         this.health = this.health + 2;
