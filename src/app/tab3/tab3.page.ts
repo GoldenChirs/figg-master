@@ -11,7 +11,7 @@ import Phaser from 'phaser';
  */
 
 class GameScene extends Phaser.Scene {
-  monie:Phaser.GameObjects.Sprite;
+  monie: Phaser.GameObjects.Sprite;
   graphics: Phaser.GameObjects.Graphics;
   health;
   hUnger;
@@ -28,6 +28,9 @@ class GameScene extends Phaser.Scene {
     this.load.image('shadow', 'assets/img/monie_shadow.png');
     this.load.image('feed', 'assets/icon/feed.png');
     this.load.image('play', 'assets/icon/play.png');
+    this.load.image('dress', 'assets/icon/dress.png');
+    this.load.image('shirt', 'assets/icon/shirt.png');
+    this.load.image('shop', 'assets/icon/shop.png');
     this.load.path = 'assets/animations/';
     this.load.image('happy1', 'happy-1.png');
     this.load.image('happy2', 'happy-2.png');
@@ -53,15 +56,18 @@ class GameScene extends Phaser.Scene {
     this.hUngerText = this.add.text(10, 35, 'hunger:', { font: '18px Arial', color: '#000000' });
     this.moodText = this.add.text(10, 60, 'mood:', { font: '18px Arial', color: '#000000' });
 
-    var feed = this.add.image(window.innerWidth - 50, window.innerHeight - 230, 'feed');
+    var feed = this.add.image(window.innerWidth - 50, window.innerHeight - 320, 'feed');
     // feed.setScale(0.9);
-    var play = this.add.image(window.innerWidth - 50, window.innerHeight - 150, 'play');
+    var play = this.add.image(window.innerWidth - 50, window.innerHeight - 230, 'play');
     // play.setScale(0.9);
+    var dress = this.add.image(window.innerWidth - 50, window.innerHeight - 150, 'dress');
     feed.setInteractive();
     play.setInteractive();
+    dress.setInteractive();
 
     feed.on('pointerdown', this.clickHandler, { context: this, action: 'feed' });
     play.on('pointerdown', this.clickHandler, { context: this, action: 'play' });
+    dress.on('pointerdown', this.clickHandler, { context: this, action: 'dress' });
 
     this.events.on('animate', this.animateHandler, this);
     this.events.on('interact', this.interactHandler, this);
@@ -109,22 +115,23 @@ class GameScene extends Phaser.Scene {
     this.anims.create({
       key: 'sleep',
       frames: [
-        { key: 'sleep1' , duration: 100},
-        { key: 'sleep2' , duration: 100},
-        { key: 'sleep3' , duration: 100},
-        { key: 'sleep1', duration: 200}
+        { key: 'sleep1', duration: 100 },
+        { key: 'sleep2', duration: 100 },
+        { key: 'sleep3', duration: 100 },
+        { key: 'sleep1', duration: 200 }
       ],
       yoyo: true,
       frameRate: 8,
       repeat: -1
     });
 
+    this.add.image(window.innerWidth * 2 / 3, 25, 'shop');
     this.add.image(window.innerWidth / 2, window.innerHeight / 2 + 220, 'shadow');
     this.monie = this.add.sprite(window.innerWidth / 2, window.innerHeight / 2 + 70, 'idle');
     this.monie.setScale(window.innerWidth / (218 * 2.2));
     this.monie.play('sleep');
 
-    
+
 
     this.health = 80;
     this.hUnger = 70;
@@ -139,7 +146,6 @@ class GameScene extends Phaser.Scene {
   }
 
   interactHandler(arg0: string, handler: any, arg2: this) {
-    console.log(arg0+ "interact")
     switch (arg0) {
       case 'feed':
         this.tweens.addCounter({
@@ -191,6 +197,20 @@ class GameScene extends Phaser.Scene {
         })
         this.health = this.health + 2;
         break;
+      case 'dress':
+        this.add.image(window.innerWidth / 2, window.innerHeight / 2 + 120, 'shirt').setScale(0.9);
+        this.tweens.addCounter({
+          from: this.health,
+          to: this.health + 5,
+          duration: 500,
+          ease: Phaser.Math.Easing.Sine.InOut,
+          onUpdate: tweens => {
+            const val = tweens.getValue();
+            this.setBarVal('health', val)
+          }
+        })
+        this.health = this.health + 2;
+        break;
       default:
         return;
     }
@@ -203,14 +223,14 @@ class GameScene extends Phaser.Scene {
   }
 
   setBarVal(type, val) {
-    const width = 200;
+    const width = 150;
     const percent = Phaser.Math.Clamp(val, 0, 100) / 100;
     console.log(percent);
     switch (type) {
       case 'health':
         //this.graphics.clear();
         this.healthText.setText('health:' + percent * 100 + "%");
-        this.graphics.fillStyle(0x808080);
+        this.graphics.fillStyle(0xffffff);
         this.graphics.fillRoundedRect(10, 10, width, 20, 5);
         this.graphics.fillStyle(0x00ff00);
         this.graphics.fillRoundedRect(10, 10, width * percent, 20, 5);
@@ -218,7 +238,7 @@ class GameScene extends Phaser.Scene {
       case 'hUnger':
         //this.graphics.clear();
         this.hUngerText.setText('hunger:' + percent * 100 + "%");
-        this.graphics.fillStyle(0x808080);
+        this.graphics.fillStyle(0xffffff);
         this.graphics.fillRoundedRect(10, 35, width, 20, 5);
         this.graphics.fillStyle(0xF1C232);
         this.graphics.fillRoundedRect(10, 35, width * percent, 20, 5);
@@ -226,7 +246,7 @@ class GameScene extends Phaser.Scene {
       case 'mood':
         //this.graphics.clear();
         this.moodText.setText('mood:' + percent * 100 + "%");
-        this.graphics.fillStyle(0x808080);
+        this.graphics.fillStyle(0xffffff);
         this.graphics.fillRoundedRect(10, 60, width, 20, 5);
         this.graphics.fillStyle(0x6FA8DC);
         this.graphics.fillRoundedRect(10, 60, width * percent, 20, 5);
