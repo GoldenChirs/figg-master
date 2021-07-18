@@ -2,7 +2,7 @@
 
 .navbar-section {
     position: fixed;
-    top: 25vh;
+    top: calc(25vh + 7px);
     left: 0;
     right: 0;
     height: 40px;

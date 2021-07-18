@@ -1,7 +1,21 @@
+@import "../app.component.scss";
+
 .category-spending {
     float: right;
  }
 
 .list-group li{
     border: none;
+}
+
+.progress {
+    height: 7px;
+}
+
+.group-style {
+    font-size: 20px;
+}
+
+.panel-heading {
+    background: #F7F7F7;
 }

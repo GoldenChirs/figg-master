@@ -24,7 +24,8 @@ export const PLANNED_EXPENSES: Expense[] = [{ id: 1, amount: 500, category: "Foo
 { id: 4, amount: 50, category: "Makeup" },
 { id: 7, amount: 180, category: "Utility" },
 { id: 8, amount: 1600, category: "Rent" },
-{ id: 9, amount: 100, category: "Pet" }];
+{ id: 9, amount: 100, category: "Pet" },
+{ id: 10, amount: 100, category: "Parking" }];
 
 export const ACTUAL_SAVINGS: Saving[] = [
     { id: 21, amount: 200 }
@@ -52,3 +53,10 @@ export const GROUP_TO_CATEGORY_MAP = [
     { group: "Living & Utilities", categories: ["Utility", "Rent"] },
     { group: "Others", categories: ["Makeup", "Pet"] },
 ];
+
+export const GROUP_ICON_MAP = {
+    "Auto & Transportation": "fa-car",
+    "Food & Dinings": "fa-utensils",
+    "Living & Utilities": "fa-home",
+    "Others": "fa-credit-card",
+}
