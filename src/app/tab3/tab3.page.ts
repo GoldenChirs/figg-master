@@ -132,7 +132,7 @@ class GameScene extends Phaser.Scene {
       repeat: -1
     });
 
-    var shop = this.add.image(window.innerWidth * 2 / 3, 25, 'shop');
+    var shop = this.add.image(window.innerWidth * 2 / 3, 35, 'shop');
     shop.setInteractive();
     shop.on('pointerdown', this.clickHandler, { context: this, action: 'shop' });
     this.add.image(window.innerWidth / 2, window.innerHeight / 2 + 220, 'shadow');
