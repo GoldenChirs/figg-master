@@ -1,13 +1,13 @@
 <div class="header">
   <div class="header-content">
     Budget
-    <div style="font-size: xxx-large;">${{budgetHelper.plannedExpenseSum - budgetHelper.actualExpenseSum}}</div>
+    <div class="budget-sum"><span>${{budgetHelper.plannedExpenseSum - budgetHelper.actualExpenseSum}}</span> <span style="font-size: 12px;">LEFT</span></div>
 
     <div class="progress">
       <div class="progress-bar" role="progressbar" [style.width]="budgetHelper.expensesPercentage + '%'"
         aria-valuemin="0" aria-valuemax="100"></div>
     </div>
-    <div style="font-size: x-small;">${{budgetHelper.actualExpenseSum}} of ${{budgetHelper.plannedExpenseSum}} spent
+    <div>${{budgetHelper.actualExpenseSum}} of ${{budgetHelper.plannedExpenseSum}} spent
     </div>
   </div>
 </div>

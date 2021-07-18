@@ -1,8 +1,11 @@
+@import "../app.component.scss";
+
 .header {
     margin-left: 10px;
     margin-right: 10px;
     position: relative;
     min-height: 25vh;
+    color: white;
 }
 
 .header-content {
@@ -12,6 +15,12 @@
     left: 0;
 }
 
+.budget-sum {
+    font-style: normal;
+    font-weight: 800;
+    font-size: 56px;
+}
+
 .progress {
-    height: 7px;
+    height: 16px;
 }
