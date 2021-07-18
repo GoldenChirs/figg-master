@@ -1,6 +1,6 @@
 {
-	"appId": "io.ionic.starter",
-	"appName": "FIGGMaster",
+	"appId": "com.ggmasters.starter",
+	"appName": "Penni",
 	"webDir": "www",
 	"bundledWebRuntime": false
 }
