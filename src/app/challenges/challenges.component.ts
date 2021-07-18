@@ -1,4 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { ModalController } from '@ionic/angular';
+import { CongratsModalComponent } from '../congrats-modal/congrats-modal.component';
 import { BudgetHelper } from '../helper/budget.helper';
 import { CHALLENGES, EXPENSES, GOALS } from '../mock-data';
 
