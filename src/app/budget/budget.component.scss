@@ -3,3 +3,16 @@
 .progress {
     height: 7px;
 }
+
+.outlined-button {
+    position: relative;
+    width: 90%;
+    vertical-align: middle;
+    align-content: center;
+    background: #F7F7F7;
+    border: 1px solid #A3A3A3;
+    box-sizing: border-box;
+    border-radius: 4px;
+    color: black;
+    margin: 20px;
+}
