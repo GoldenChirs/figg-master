@@ -16,6 +16,7 @@ class GameScene extends Phaser.Scene {
   health;
   hUnger;
   mood;
+  toys: Phaser.GameObjects.Particles.ParticleEmitterManager
   healthText: Phaser.GameObjects.Text;
   hUngerText: Phaser.GameObjects.Text;
   moodText: Phaser.GameObjects.Text;
@@ -27,7 +28,9 @@ class GameScene extends Phaser.Scene {
     this.load.image('bg', 'assets/img/monie_bg.png');
     this.load.image('shadow', 'assets/img/monie_shadow.png');
     this.load.image('feed', 'assets/icon/feed.png');
+    this.load.image('apple', 'assets/icon/apple.png');
     this.load.image('play', 'assets/icon/play.png');
+    this.load.image('toy', 'assets/icon/toy.png');
     this.load.image('dress', 'assets/icon/dress.png');
     this.load.image('shirt', 'assets/icon/shirt.png');
     this.load.image('shop', 'assets/icon/shop.png');
@@ -131,23 +134,49 @@ class GameScene extends Phaser.Scene {
     this.monie.setScale(window.innerWidth / (218 * 2.2));
     this.monie.play('sleep');
 
-
-
     this.health = 80;
     this.hUnger = 70;
     this.mood = 65
     this.setBarVal('health', this.health);
     this.setBarVal('hUnger', this.hUnger);
     this.setBarVal('mood', this.mood);
+
+    //particles 
+    this.toys = this.add.particles('toy');
   }
 
   animateHandler(arg0: string, handler: any, arg2: this) {
+    if(arg0 == 'dress') {
+      arg0 = 'play'
+    }
     this.monie.play(arg0);
   }
 
   interactHandler(arg0: string, handler: any, arg2: this) {
     switch (arg0) {
       case 'feed':
+        var food = this.add.image(window.innerWidth / 2, window.innerHeight - 250, 'apple')
+        this.add.tween({
+          targets: [food],
+          ease: 'Sine.easeInOut',
+          duration: 2500,
+          delay: 0,
+          alpha: {
+            getStart: () => 1,
+            getEnd: () => 0
+          },
+          scaleX:{
+            getStart: () => 0.6,
+            getEnd: () => 0
+          },
+          scaleY:{
+            getStart: () => 0.6,
+            getEnd: () => 0
+          },
+          onComplete: () => {
+            food.destroy();
+          }
+        });
         this.tweens.addCounter({
           from: this.hUnger,
           to: this.hUnger + 5,
@@ -173,6 +202,19 @@ class GameScene extends Phaser.Scene {
         this.health = this.health + 5;
         break;
       case 'play':
+        var emitter = this.toys.createEmitter({
+          frequency: 100,
+          maxParticles: 5,
+          x: window.innerWidth / 2, 
+          y: window.innerHeight - 250,
+          collideBottom: true,
+          collideLeft: true,
+          collideTop: true,
+          collideRight: true,
+          speed: 350,
+          lifespan: 3000,
+          rotate: { onEmit: function () { return 20; } },
+        });
         this.tweens.addCounter({
           from: this.mood,
           to: this.mood + 5,
