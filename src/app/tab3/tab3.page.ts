@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 import Phaser from 'phaser';
 
@@ -55,9 +56,12 @@ class GameScene extends Phaser.Scene {
   create() {
     this.add.image(200, 360, 'bg').setScale(0.6);
     this.graphics = this.add.graphics();
-    this.healthText = this.add.text(10, 10, 'health:', { font: '18px Arial', color: '#000000' });
-    this.hUngerText = this.add.text(10, 35, 'hunger:', { font: '18px Arial', color: '#000000' });
-    this.moodText = this.add.text(10, 60, 'mood:', { font: '18px Arial', color: '#000000' });
+    this.add.text(10, 10, 'HEALTH', { font: '12px Helvetica', color: '#000000' });
+    this.healthText = this.add.text(80, 25, '0%', { font: '12px Helvetica', color: '#000000' });
+    this.add.text(10, 50, 'HUNGER', { font: '12px Helvetica', color: '#000000' });
+    this.hUngerText = this.add.text(80, 65, '0%:', { font: '12px Arial', color: '#000000' });
+    this.add.text(10, 90, 'MOOD', { font: '12px Helvetica', color: '#000000' });
+    this.moodText = this.add.text(80, 105, '0%', { font: '12px Arial', color: '#000000' });
 
     var feed = this.add.image(window.innerWidth - 50, window.innerHeight - 320, 'feed');
     // feed.setScale(0.9);
@@ -128,15 +132,17 @@ class GameScene extends Phaser.Scene {
       repeat: -1
     });
 
-    this.add.image(window.innerWidth * 2 / 3, 25, 'shop');
+    var shop = this.add.image(window.innerWidth * 2 / 3, 25, 'shop');
+    shop.setInteractive();
+    shop.on('pointerdown', this.clickHandler, { context: this, action: 'shop' });
     this.add.image(window.innerWidth / 2, window.innerHeight / 2 + 220, 'shadow');
     this.monie = this.add.sprite(window.innerWidth / 2, window.innerHeight / 2 + 70, 'idle');
     this.monie.setScale(window.innerWidth / (218 * 2.2));
     this.monie.play('sleep');
 
-    this.health = 80;
-    this.hUnger = 70;
-    this.mood = 65
+    this.health = 79;
+    this.hUnger = 68;
+    this.mood = 75
     this.setBarVal('health', this.health);
     this.setBarVal('hUnger', this.hUnger);
     this.setBarVal('mood', this.mood);
@@ -260,8 +266,12 @@ class GameScene extends Phaser.Scene {
 
   clickHandler(arg0: string, clickHandler: any, context: string) {
     let that = this as any;
-    that.context.events.emit('animate', that.action);
-    that.context.events.emit('interact', that.action);
+    if (that.action != 'shop') {
+      that.context.events.emit('animate', that.action);
+      that.context.events.emit('interact', that.action);
+    } else {
+      console.log('shop');
+    }
   }
 
   setBarVal(type, val) {
@@ -271,27 +281,27 @@ class GameScene extends Phaser.Scene {
     switch (type) {
       case 'health':
         //this.graphics.clear();
-        this.healthText.setText('health:' + percent * 100 + "%");
+        this.healthText.setText(percent * 100 + "%");
         this.graphics.fillStyle(0xffffff);
-        this.graphics.fillRoundedRect(10, 10, width, 20, 5);
-        this.graphics.fillStyle(0x00ff00);
-        this.graphics.fillRoundedRect(10, 10, width * percent, 20, 5);
+        this.graphics.fillRoundedRect(10, 25, width, 20, 5);
+        this.graphics.fillStyle(0xFFA6C4);
+        this.graphics.fillRoundedRect(10, 25, width * percent, 20, 5);
         break;
       case 'hUnger':
         //this.graphics.clear();
-        this.hUngerText.setText('hunger:' + percent * 100 + "%");
+        this.hUngerText.setText(percent * 100 + "%");
         this.graphics.fillStyle(0xffffff);
-        this.graphics.fillRoundedRect(10, 35, width, 20, 5);
-        this.graphics.fillStyle(0xF1C232);
-        this.graphics.fillRoundedRect(10, 35, width * percent, 20, 5);
+        this.graphics.fillRoundedRect(10, 65, width, 20, 5);
+        this.graphics.fillStyle(0xAAE0FF);
+        this.graphics.fillRoundedRect(10, 65, width * percent, 20, 5);
         break;
       case 'mood':
         //this.graphics.clear();
-        this.moodText.setText('mood:' + percent * 100 + "%");
+        this.moodText.setText(percent * 100 + "%");
         this.graphics.fillStyle(0xffffff);
-        this.graphics.fillRoundedRect(10, 60, width, 20, 5);
-        this.graphics.fillStyle(0x6FA8DC);
-        this.graphics.fillRoundedRect(10, 60, width * percent, 20, 5);
+        this.graphics.fillRoundedRect(10, 105, width, 20, 5);
+        this.graphics.fillStyle(0xFFE0A5);
+        this.graphics.fillRoundedRect(10, 105, width * percent, 20, 5);
       default:
         return;
     }
@@ -309,7 +319,7 @@ export class Tab3Page {
   phaserGame: Phaser.Game;
   config: Phaser.Types.Core.GameConfig;
 
-  constructor() {
+  constructor(private router: Router) {
     this.config = {
       type: Phaser.AUTO,
       width: window.innerWidth,
@@ -321,8 +331,12 @@ export class Tab3Page {
       scale: {
         mode: Phaser.Scale.ENVELOP
       },
-      scene: GameScene
+      scene: GameScene,
     };
+  }
+
+  onShopClick() {
+    this.router.navigate(['/', { item: ''}]);
   }
 
   ngOnInit(): void {
