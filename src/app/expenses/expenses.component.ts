@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BudgetHelper } from '../helper/budget.helper';
-import { EXPENSES } from '../mock-data';
+import { EXPENSES, PENDING_EXPENSES } from '../mock-data';
 
 @Component({
   selector: 'app-expenses',
@@ -10,6 +10,17 @@ import { EXPENSES } from '../mock-data';
 export class ExpensesComponent implements OnInit {
 
   public expenses = EXPENSES;
+  public pendings = PENDING_EXPENSES;
+
+  public slidePages = [{
+    text: "test",
+  },
+  {
+    text: "test",
+  },
+  {
+    text: "test",
+  }];
 
   constructor(public budgetHelper: BudgetHelper) {
   }

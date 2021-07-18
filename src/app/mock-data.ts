@@ -18,6 +18,12 @@ export const EXPENSES: Expense[] = [
     { id: 20, amount: 30, category: "Food", description: "Steak" }
 ];
 
+export const PENDING_EXPENSES: Expense[] = [
+    { id: 21, amount: 52.64, category: "Rental Car & Taxi", description: "Uber.com" },
+    { id: 22, amount: 50, category: "Gas", description: "Esso" },
+    { id: 23, amount: 16.89, category: "Food", description: "Mcdonalds" },
+]
+
 export const PLANNED_EXPENSES: Expense[] = [{ id: 1, amount: 500, category: "Food" },
 { id: 2, amount: 200, category: "Gas" },
 { id: 3, amount: 500, category: "Grocery" },
@@ -25,7 +31,8 @@ export const PLANNED_EXPENSES: Expense[] = [{ id: 1, amount: 500, category: "Foo
 { id: 7, amount: 180, category: "Utility" },
 { id: 8, amount: 1600, category: "Rent" },
 { id: 9, amount: 100, category: "Pet" },
-{ id: 10, amount: 100, category: "Parking" }];
+{ id: 10, amount: 100, category: "Parking" },
+{ id: 11, amount: 200, category: "Rental Car & Taxi"}];
 
 export const ACTUAL_SAVINGS: Saving[] = [
     { id: 21, amount: 200 }
@@ -48,7 +55,7 @@ export const GOALS: Goal[] = [
 ];
 
 export const GROUP_TO_CATEGORY_MAP = [
-    { group: "Auto & Transportation", categories: ["Gas", "Parking"] },
+    { group: "Auto & Transportation", categories: ["Gas", "Parking", "Rental Car & Taxi"] },
     { group: "Food & Dinings", categories: ["Food", "Grocery"] },
     { group: "Living & Utilities", categories: ["Utility", "Rent"] },
     { group: "Others", categories: ["Makeup", "Pet"] },
