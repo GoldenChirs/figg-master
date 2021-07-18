@@ -1,5 +1,22 @@
-<ul class="list-group">
-  <li class="list-group-item" *ngFor="let category of budgetHelper.categorySummary">
-    {{category.name}} <span class="category-spending">${{category.actual_amount}} of ${{category.planned_amount}}</span>
-  </li>
-</ul>
+<div class="panel-group">
+  <div class="panel panel-default" *ngFor="let group of categoryGroupMap">
+    <div class="panel-heading">
+      <i [ngClass]="getGroupIcon(group.group)" class="fa"></i> <span class="group-style"><b>{{group.group}}</b></span>
+    </div>
+    <div class="panel-body">
+      <ul class="list-group">
+        <li class="list-group-item" *ngFor="let category of group.categories">
+          <div><b>{{category}} <span class="pull-right">${{getPlannedAmount(category) - getActualAmount(category)}}
+              left</span></b></div>
+
+          <div class="progress">
+            <div class="progress-bar" role="progressbar" [style.width]="getPercentage(category) + '%'" aria-valuemin="0"
+              aria-valuemax="100"></div>
+          </div>
+          <div style="font-size: 14px;">${{getActualAmount(category)}} of ${{getPlannedAmount(category)}} spent
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
