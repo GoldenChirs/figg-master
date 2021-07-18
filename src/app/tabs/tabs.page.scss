@@ -1,1 +1,12 @@
+ion-tab-button{
+    --background: #333333 !important;
+    --ripple-color: var(--ion-color-medium);
+    --color: white;
+    --background-focused: #FF88B1;
+    --color-selected: #FF88B1;
+}
 
+ion-tab-button.tab-selected {
+    --background: #333333 !important;
+    --color-selected: #FF88B1;
+  }

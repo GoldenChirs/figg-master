@@ -35,7 +35,7 @@ export const PLANNED_EXPENSES: Expense[] = [{ id: 1, amount: 500, category: "Foo
 { id: 11, amount: 200, category: "Rental Car & Taxi"}];
 
 export const ACTUAL_SAVINGS: Saving[] = [
-    { id: 21, amount: 200 }
+    { id: 21, amount: 500 }
 ];
 
 export const BUDGET: Budget = {
@@ -51,7 +51,8 @@ export const CHALLENGES: Challenge[] = [
 ];
 
 export const GOALS: Goal[] = [
-    { id: 0, description: "Save $2000 for travel", amount: 2000 },
+    { id: 0, description: "Save $2000 for travel", amount: 2000, category: "Travel" },
+    { id: 1, description: "Save $500 for ipadPro", amount: 500, category: "Shopping" },
 ];
 
 export const GROUP_TO_CATEGORY_MAP = [
@@ -66,4 +67,13 @@ export const GROUP_ICON_MAP = {
     "Food & Dinings": "fa-utensils",
     "Living & Utilities": "fa-home",
     "Others": "fa-credit-card",
+}
+
+export const GOAL_ICON_MAP = {
+    "Travel": "fa-plane",
+    "Shopping": "fa-shopping-cart",
+}
+
+export const CHALLENGE_ICON_MAP = {
+    "Food": "fa-utensils",
 }

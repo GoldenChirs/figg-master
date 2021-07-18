@@ -1,25 +1,11 @@
 @import "../app.component.scss";
 
-.page-wrap {
-    margin: 10px;
-}
-
-.list-title {
-    margin-bottom: 5px;
-}
-
-.add-button {
-    float: right;
-    margin-right: 10px;
-    font-size: x-small;
-}
-
 .track-amount {
     text-align: right;
     line-height: 0.8;
     float: right;
-    font-size: medium;
     padding: 0;
+    color: #999999;
  }
 
  .challenge-description {
@@ -38,3 +24,31 @@
 .my-custom-class {
     --background: #222;
   }
+
+/* Create two equal columns that floats next to each other */
+.column {
+    float: left;
+    width: 50%;
+    padding: 10px;
+    height: 300px; /* Should be removed. Only for demonstration */
+}
+  
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.completion-status {
+    font-size: 56px;
+    font-weight: 800;
+}
+
+.add-button {
+    margin-right: 10px;
+}
+
+.completed {
+    color: #65B14B;
+}
