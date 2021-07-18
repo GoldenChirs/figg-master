@@ -1,31 +1,25 @@
-<ion-header [translucent]="false">
-  <ion-toolbar>
-    <div style="background: black;">
-      <app-summary-header></app-summary-header>
-    </div>
-  </ion-toolbar>
-</ion-header>
-
-<div class="overlay">
-  <app-points></app-points>
-</div>
 <ion-content [fullscreen]="true">
 
-  <div class="navbar-section">
-    <ul class="nav nav-pills nav-fill">
-      <li class="nav-item">
-        <a class="nav-link" aria-current="page" (click)="switchSummaryTab()"
-          [ngClass]="{'active': isActiveTab('summary') }">Summary</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" (click)="switchDetailsTab()" [ngClass]="{'active': isActiveTab('details') }">Expenses</a>
-      </li>
-    </ul>
+  <div class="fixed-content">
+    <div class="overlay">
+      <app-points></app-points>
+    </div>
+    <app-summary-header></app-summary-header>
+
+    <div class="navbar-section">
+      <ul class="nav nav-pills nav-fill">
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" (click)="switchSummaryTab()"
+            [ngClass]="{'active': isActiveTab('summary') }">Summary</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" (click)="switchDetailsTab()" [ngClass]="{'active': isActiveTab('details') }">Activity</a>
+        </li>
+      </ul>
+    </div>
   </div>
-  <div class="scrollable-container">
+  <div class="scrollable-content">
     <ng-container *ngComponentOutlet="openTab"></ng-container>
   </div>
-
-
 
 </ion-content>
