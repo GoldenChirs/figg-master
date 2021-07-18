@@ -1,8 +1,17 @@
 @import "../app.component.scss";
-.expense-spending {
-    float: right;
- }
 
- .list-group li{
-    border: none;
+.rounded-corner-rectangle {
+    border-radius: 10px;
+    padding: 20px; 
+    width: 170px;
+    height: 104px;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.16);
+}
+
+::-webkit-scrollbar {
+    display: none;
+  }
+
+  .group-style {
+    margin-left: 20px;
 }

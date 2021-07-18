@@ -1,7 +1,55 @@
-<div>
-<ul class="list-group">
-  <li class="list-group-item" *ngFor="let expense of expenses">
-    {{expense.description}} <span class="expense-spending">${{expense.amount}}</span>
-  </li>
-</ul>
-</div>
+<ion-content>
+  <div class="panel-group">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <span class="group-style"><b>Cards</b></span>
+      </div>
+      <div class="panel-body">
+        <ion-slides pager>
+          <ion-slide>
+            <div class="rounded-corner-rectangle" style="background-image:url(./../assets/img/card1.png);">
+            </div>
+          </ion-slide>
+          <ion-slide>
+            <div class="rounded-corner-rectangle" style="background-image:url(./../assets/img/card2.png);">
+            </div>
+          </ion-slide>
+          <ion-slide>
+            <div class="rounded-corner-rectangle" style="background-image:url(./../assets/img/card3.png);">
+            </div>
+          </ion-slide>
+        </ion-slides>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <span class="group-style"><b>Pending</b></span>
+      </div>
+      <div class="panel-body">
+        <ul class="list-group">
+          <li class="list-group-item" *ngFor="let pending of pendings">
+            <div><b>{{pending.description}}<span class="pull-right">${{pending.amount}}</span></b></div>
+            <div style="font-size: 14px;">{{pending.category}}
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <span class="group-style"><b>July 2021</b></span>
+      </div>
+      <div class="panel-body">
+        <ul class="list-group">
+          <li class="list-group-item" *ngFor="let expense of expenses">
+            <div><b>{{expense.description}}<span class="pull-right">${{expense.amount}}</span></b></div>
+            <div style="font-size: 14px;">{{expense.category}}
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</ion-content>
