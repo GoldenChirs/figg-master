@@ -1,14 +1,15 @@
 @import "../app.component.scss";
 
 .header {
-    margin-left: 10px;
-    margin-right: 10px;
     position: relative;
     min-height: 25vh;
     color: white;
+    background-color: black;
 }
 
 .header-content {
+    margin-left: 10px;
+    margin-right: 10px;
     width: 100%;
     position: absolute;
     bottom: 20px;
@@ -23,4 +24,5 @@
 
 .progress {
     height: 16px;
+    max-width: 90vw;
 }
