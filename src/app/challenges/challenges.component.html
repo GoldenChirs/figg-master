@@ -1,43 +1,74 @@
-<div class="page-wrap">
-  <h1>Challenges</h1>
-  <div>
-    <div class="list-title">My Goals <button type="button" class="btn btn-outline-primary btn-sm add-button"
-        (click)="addGoal()">Add</button></div>
-    <ul class="list-group">
-      <li class="list-group-item" *ngFor="let goal of goals">
-        <div class="row">
-          <div class="col-2"><i class="fa fa-plane"></i></div>
-          <div class="col-7">
-            {{goal.description}}
-            <div class="subdescription">${{budgetHelper.actualSavingSum}} of ${{goal.amount}} saved</div>
-          </div>
-          <div class="col-3 track-amount">
-            <span><b>${{goal.amount - budgetHelper.actualSavingSum}} more</b></span>
-          </div>
-        </div>
+<div class="header">
+  <div class="header-content">
+    <div class="row">
+      <div class="column">
+        <div>GOALS<br></div>
+        <div class="completion-status">{{numGoalsCompleted}}/{{goals.length}}<br></div>
+        <div>COMPLETE</div>
+      </div>
+      <div class="column">
+        <div>CHALLENGES<br></div>
+        <div class="completion-status">{{numChallengesCompleted}}/{{challenges.length}}<br></div>
+        <div>COMPLETE</div>
+      </div>
+    </div>
+  </div>
+</div>
 
-      </li>
-    </ul>
-
-    <div class="list-title">My Challenges <button type="button" class="btn btn-outline-primary btn-sm add-button"
-        (click)="addChallenge()">Add</button></div>
-    <ul class="list-group">
-      <li class="list-group-item" *ngFor="let challenge of challenges">
-        <div class="row">
-          <div class="col-2"><i class="fa fa-utensils"></i></div>
-          <div class="col-7">{{challenge.description}}</div>
-          <div class="col-3 track-amount">
-            <div *ngIf="challenge.amount !== null && challenge.amount !== undefined">
-              <span
-                [ngClass]="budgetHelper.isChallengeComplete ? 'badge bg-success': ''"><b>${{actualAmount(challenge.category)}}/${{challenge.amount}}</b></span>
+<div class="panel-group">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <span class="group-style"><b>My Goals</b></span> <span class="add-button pull-right">ADD</span>
+    </div>
+    <div class="panel-body">
+      <ul class="list-group">
+        <li class="list-group-item" *ngFor="let goal of goals">
+          <div class="row">
+            <div class="col-2"><i [ngClass]="getGoalIcon(goal.category)" class="fa"></i></div>
+            <div class="col-7">
+              {{goal.description}}
+              <div class="subdescription">${{budgetHelper.actualSavingSum}} of ${{goal.amount}} saved</div>
             </div>
-            <div *ngIf="challenge.frequency !== null && challenge.frequency !== undefined">
-              <span><b>{{actualFrequency(challenge.category)}}/{{challenge.frequency}}</b></span>
+            <div class="col-3 track-amount">
+              <span *ngIf="!isGoalComplete(goal.amount)">${{goal.amount - budgetHelper.actualSavingSum}} more</span>
+              <span *ngIf="isGoalComplete(goal.amount)" class="completed">Complete</span>
             </div>
           </div>
-        </div>
 
-      </li>
-    </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <span class="group-style"><b>My Challenges</b></span> <span class="add-button pull-right">ADD</span>
+    </div>
+    <div class="panel-body">
+      <ul class="list-group">
+        <li class="list-group-item" *ngFor="let challenge of challenges">
+          <div class="row">
+            <div class="col-2"><i [ngClass]="getChallengeIcon(challenge.category)" class="fa"></i></div>
+            <div class="col-7">{{challenge.description}}
+              <div class="subdescription">0 days left</div>
+            </div>
+            <div class="col-3 track-amount">
+              <div *ngIf="challenge.amount !== null && challenge.amount !== undefined">
+                <span *ngIf="!budgetHelper.isChallengeComplete">
+                  ${{actualAmount(challenge.category)}}/${{challenge.amount}}
+                </span>
+                <span *ngIf="budgetHelper.isChallengeComplete" class="completed">
+                  Complete
+                </span>
+              </div>
+              <div *ngIf="challenge.frequency !== null && challenge.frequency !== undefined">
+                <span
+                  [ngStyle]="{'color': (actualFrequency(challenge.category) > challenge.frequency) ? '#C95F5F': '#999999'}">{{actualFrequency(challenge.category)}}/{{challenge.frequency}}</span>
+              </div>
+            </div>
+          </div>
+
+        </li>
+      </ul>
+    </div>
   </div>
 </div>

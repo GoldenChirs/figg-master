@@ -1,21 +1,5 @@
 @import "../app.component.scss";
 
-.header {
-    position: relative;
-    min-height: 25vh;
-    color: white;
-    background-color: black;
-}
-
-.header-content {
-    margin-left: 10px;
-    margin-right: 10px;
-    width: 100%;
-    position: absolute;
-    bottom: 20px;
-    left: 0;
-}
-
 .budget-sum {
     font-style: normal;
     font-weight: 800;

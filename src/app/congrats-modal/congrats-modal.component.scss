@@ -1,6 +1,59 @@
 @import "../app.component.scss";
 
 .new-background-color{
-    --background: #FF88B1;
+    --background: #333333;
     --color: white;
+}
+
+ion-content{
+    --ion-background-color:#333333;
+}
+
+.image-position{
+    position: absolute;
+    width: 336.02px;
+    height: 339.26px;
+    left: 8vw;
+    top: 40vh;
+}
+
+.congrats-text {
+    position: absolute;
+    top: 20vh;
+    left: 10vw;
+    color: #FFFFFF;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.congrats-bold {
+    font-weight: 900;
+    font-size: 32px;
+    line-height: 40px;
+}
+
+.congrats-detail {
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 23px;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+.reward-amount {
+    font-weight: bold;
+    font-size: 24px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.coin-icon {
+    background: url('../../assets/icon/coin.png');
+    background-size: 26px;
+    height: 22.4px;
+    width: 22.4px;
+    display: inline-block;
+    vertical-align: middle;
+    margin: auto 5px;
+    /* Other styles here */
 }

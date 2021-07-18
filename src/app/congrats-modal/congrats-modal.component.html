@@ -1,18 +1,14 @@
-<!-- my-modal.page.html -->
-<ion-header>
-  <ion-toolbar class="new-background-color">
-    <ion-title>Challenge Complete!</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content class="ion-padding">
+<ion-content class="new-background">
+  <button class="btn" (click)="closeModal()"><i class="fas fa-times"></i></button>
   <div>
     <app-celebration></app-celebration>
   </div>
-  <div>Congrats! You just got 20 MORE Points!</div>
-  <div>
+  <div class="congrats-text">
+    <div class="congrats-bold">Congradulation!<br></div>
+    <div class="congrats-details">You have completed your first challenge.<br></div>
+    <div class="congrats-details"><span>Reward:<span class='coin-icon'></span><span class="reward-amount">20</span></span></div>
+  </div>
+  <div class="image-position">
     <img src="../../assets/img/monie_congrats.png">
   </div>
-  <button type="button" class="btn btn-primary btn-sm pull-right" (click)="closeModal()">Got it!</button>
-
 </ion-content>
