@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { ToastController } from '@ionic/angular';
+import { ModalController, ToastController } from '@ionic/angular';
+import { CongratsModalComponent } from '../congrats-modal/congrats-modal.component';
 import { BudgetHelper } from '../helper/budget.helper';
 
 @Component({
@@ -8,29 +9,21 @@ import { BudgetHelper } from '../helper/budget.helper';
   styleUrls: ['tab2.page.scss']
 })
 export class Tab2Page {
-  public toastOpen = false;
 
-  constructor(public toastCtrl: ToastController, private budgetHelper: BudgetHelper) { }
-  async openToast() {
-    const toast = await this.toastCtrl.create({
-      header: 'Challenge Complete!',
-      message: 'You got 20 Points!',
-      position: 'top',
-      cssClass: 'toast-custom-class',
-      buttons: [
-        {
-          side: 'end',
-          text: 'Got it!',
-          handler: () => {
-            this.budgetHelper.updateChallengesStatus();
-            this.budgetHelper.updatePoints();
-            this.toastOpen = false;
-          }
-        },
-      ]
+  constructor(public toastCtrl: ToastController, private budgetHelper: BudgetHelper, public modalController: ModalController) { }
+
+  async presentModal() {
+    const modal = await this.modalController.create({
+      component: CongratsModalComponent,
+      cssClass: 'my-custom-class',
+      swipeToClose: true,
     });
-    toast.present();
-    this.toastOpen = true;
-  }
 
+    modal.onDidDismiss().then(() => {
+      this.budgetHelper.updateChallengesStatus();
+      this.budgetHelper.updatePoints();
+    });
+
+    return await modal.present();
+  }
 }

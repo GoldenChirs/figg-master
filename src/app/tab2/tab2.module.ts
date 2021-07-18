@@ -12,6 +12,7 @@ import { Tab2PageRoutingModule } from './tab2-routing.module';
 import { ChallengesComponent } from '../challenges/challenges.component';
 import { PointsComponent } from '../points/points.component';
 import { CelebrationComponent } from '../celebration/celebration.component';
+import { CongratsModalComponent } from '../congrats-modal/congrats-modal.component';
 
 @NgModule({
   imports: [
@@ -22,6 +23,6 @@ import { CelebrationComponent } from '../celebration/celebration.component';
     Tab2PageRoutingModule,
     FontAwesomeModule
   ],
-  declarations: [Tab2Page, ChallengesComponent, PointsComponent, CelebrationComponent]
+  declarations: [Tab2Page, ChallengesComponent, PointsComponent, CelebrationComponent, CongratsModalComponent]
 })
 export class Tab2PageModule {}

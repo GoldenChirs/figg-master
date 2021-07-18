@@ -1,9 +1,6 @@
 <ion-content [fullscreen]="true">
   <div class="overlay">
     <app-points></app-points>
-    <div *ngIf="toastOpen">
-      <app-celebration></app-celebration>
-    </div>
   </div>
-  <app-challenges (challengeCompleted)="openToast()"></app-challenges>
+  <app-challenges (challengeCompleted)="presentModal()"></app-challenges>
 </ion-content>
